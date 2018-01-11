@@ -33,7 +33,7 @@ class OrderDataGenerator extends FeedbackDataGenerator
      */
     public function getTitle()
     {
-        return 'Новый заказ с сайта ' . $_SERVER['HTTP_HOST'] . '';
+        return 'Заказ #' . (int)$this->item->id . ' с сайта ' . $_SERVER['HTTP_HOST'] . '';
     }
 
 

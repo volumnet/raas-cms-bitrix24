@@ -42,7 +42,7 @@ class OrderDataGeneratorTest extends PHPUnit_Framework_TestCase
     public function testGetTitle()
     {
         $result = self::$dg->getTitle();
-        $this->assertEquals('Новый заказ с сайта localhost', $result);
+        $this->assertEquals('Заказ #1 с сайта localhost', $result);
     }
 
 

@@ -31,7 +31,7 @@ class FeedbackDataGenerator extends DataGenerator
      */
     public function getTitle()
     {
-        return 'Новая заявка с формы «' . $this->getFormName() . '» (' . $_SERVER['HTTP_HOST'] . ')';
+        return 'Заявка #' . (int)$this->item->id . ' с формы «' . $this->getFormName() . '» (' . $_SERVER['HTTP_HOST'] . ')';
     }
 
 

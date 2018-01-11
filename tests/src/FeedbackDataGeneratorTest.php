@@ -46,10 +46,10 @@ class FeedbackDataGeneratorTest extends PHPUnit_Framework_TestCase
     public function testGetTitle()
     {
         $result = self::$dg->getTitle();
-        $this->assertEquals('Новая заявка с формы «Обратная связь 2» (localhost)', $result);
+        $this->assertEquals('Заявка #2 с формы «Обратная связь 2» (localhost)', $result);
 
         $result = self::$dg0->getTitle();
-        $this->assertEquals('Новая заявка с формы «» (localhost)', $result);
+        $this->assertEquals('Заявка #0 с формы «» (localhost)', $result);
     }
 
 
@@ -173,7 +173,7 @@ class FeedbackDataGeneratorTest extends PHPUnit_Framework_TestCase
 
         $result = self::$dg->getData(false);
         $this->assertEquals('WEB', $result['fields']['SOURCE_ID']);
-        $this->assertEquals('Новая заявка с формы «Обратная связь 2» (localhost)', $result['fields']['TITLE']);
+        $this->assertEquals('Заявка #2 с формы «Обратная связь 2» (localhost)', $result['fields']['TITLE']);
         $this->assertEquals('Пользователь', $result['fields']['NAME']);
         $this->assertEquals('2006', $result['fields']['SECOND_NAME']);
         $this->assertEquals('Тестовый', $result['fields']['LAST_NAME']);
