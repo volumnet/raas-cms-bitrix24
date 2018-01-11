@@ -1,0 +1,29 @@
+{
+    "name": "volumnet/raas-cms-bitrix24",
+    "description": "Bitrix24 adapter for RAAS4.CMS",
+    "type": "library",
+    "license": "GPL v3",
+    "authors": [
+        {
+            "name": "Alex V. Surnin",
+            "email": "info@volumnet.ru"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^5.3" 
+    },
+    "require": {
+        "volumnet/bitrix24": "^1.0"
+    },
+    "scripts": {
+        "test": [
+            "CHCP 65001",
+            "phpunit --coverage-html tests/coverage"
+        ]
+    },
+    "autoload": {
+        "psr-4": {
+            "RAAS\\CMS\\Bitrix24\\": "src/"
+        }
+    }
+}
