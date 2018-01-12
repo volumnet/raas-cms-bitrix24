@@ -1154,6 +1154,19 @@ INSERT INTO `cms_data` (`pid`, `fid`, `fii`, `value`, `inherited`) VALUES
 ('3', '13', '0', 'rub', '0'),
 ('4', '14', '0', '#', '0'),
 ('4', '15', '0', '{\"vis\":1,\"name\":\"\",\"description\":\"\",\"attachment\":1}', '0'),
+('4', '43', '0', '', '0'),
+('4', '44', '0', 'Пользователь', '0'),
+('4', '45', '0', '', '0'),
+('4', '46', '0', '', '0'),
+('4', '47', '0', '', '0'),
+('4', '48', '0', '', '0'),
+('4', '49', '0', '', '0'),
+('4', '50', '0', '', '0'),
+('4', '51', '0', '', '0'),
+('4', '54', '0', '1', '0'),
+('4', '56', '0', '', '0'),
+('4', '57', '0', '', '0'),
+('4', '58', '0', '', '0'),
 ('5', '14', '0', '#', '0'),
 ('5', '15', '0', '{\"vis\":1,\"name\":\"\",\"description\":\"\",\"attachment\":2}', '0'),
 ('6', '14', '0', '#', '0'),
@@ -1386,7 +1399,7 @@ CREATE TABLE `cms_feedback` (
   KEY `uid` (`uid`),
   KEY `pid` (`pid`),
   KEY `page_id` (`page_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='Feedback';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='Feedback';
 
 -- 
 -- Table data: cms_feedback
@@ -1394,7 +1407,8 @@ CREATE TABLE `cms_feedback` (
 INSERT INTO `cms_feedback` (`id`, `uid`, `pid`, `page_id`, `material_id`, `post_date`, `vis`, `ip`, `user_agent`) VALUES 
 ('1', '0', '1', '3', '0', '2018-01-09 18:03:40', '1', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'),
 ('2', '0', '5', '2', '0', '2018-01-09 18:07:16', '1', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'),
-('3', '0', '2', '18', '11', '2018-01-11 12:48:03', '1', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36');
+('3', '0', '2', '18', '11', '2018-01-11 12:48:03', '1', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'),
+('4', '0', '5', '2', '0', '2018-01-12 13:32:49', '0', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36');
 
 
 -- *************************************************************

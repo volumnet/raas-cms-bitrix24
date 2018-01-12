@@ -16,23 +16,9 @@ class OrderDataGeneratorTest extends PHPUnit_Framework_TestCase
 
     public static function setUpBeforeClass()
     {
-        ob_start();
-        @General::i()->backupSQL();
-        $sql = ob_get_clean();
-        file_put_contents(__DIR__ . '/../../../../../backup-test.sql', $sql);
-        $newSQL = file_get_contents(__DIR__ . '/../resources/test.sql');
-        Application::i()->SQL->query($newSQL);
         require_once __DIR__ . '/../mocks/CloneCheckerMock.php';
         $cloneChecker = new CloneCheckerMock();
         self::$dg = new OrderDataGenerator(new Order(1), $cloneChecker);
-    }
-
-
-    public static function tearDownAfterClass()
-    {
-        $sql = file_get_contents(__DIR__ . '/../../../../../backup-test.sql');
-        Application::i()->SQL->query($sql);
-        unlink(__DIR__ . '/../../../../../backup-test.sql');
     }
 
 

@@ -451,7 +451,10 @@ abstract class DataGenerator
         $temp = array();
         foreach ((array)$this->item->fields as $key => $field) {
             if (!in_array($key, $ignoredFields)) {
-                $temp[] = $field->name . ': ' . $this->getSingleValue($key);
+                $val = $this->getSingleValue($key);
+                if ($val) {
+                    $temp[] = $field->name . ': ' . $this->getSingleValue($key);
+                }
             }
         }
         $temp = implode("\n", $temp);

@@ -13,24 +13,6 @@ use RAAS\CMS\Material;
  */
 class NotifierTest extends PHPUnit_Framework_TestCase
 {
-    public static function setUpBeforeClass()
-    {
-        ob_start();
-        @General::i()->backupSQL();
-        $sql = ob_get_clean();
-        file_put_contents(__DIR__ . '/../../../../../backup-test.sql', $sql);
-        $newSQL = file_get_contents(__DIR__ . '/../resources/test.sql');
-        Application::i()->SQL->query($newSQL);
-    }
-
-
-    public static function tearDownAfterClass()
-    {
-        $sql = file_get_contents(__DIR__ . '/../../../../../backup-test.sql');
-        Application::i()->SQL->query($sql);
-        unlink(__DIR__ . '/../../../../../backup-test.sql');
-    }
-
     /**
      * Tests notify
      */

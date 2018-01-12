@@ -15,30 +15,20 @@ class FeedbackDataGeneratorTest extends PHPUnit_Framework_TestCase
 
     protected static $dg2;
 
+    protected static $dg3;
+
     protected static $dg0;
 
     public static function setUpBeforeClass()
     {
-        ob_start();
-        @General::i()->backupSQL();
-        $sql = ob_get_clean();
-        file_put_contents(__DIR__ . '/../../../../../backup-test.sql', $sql);
-        $newSQL = file_get_contents(__DIR__ . '/../resources/test.sql');
-        Application::i()->SQL->query($newSQL);
         require_once __DIR__ . '/../mocks/CloneCheckerMock.php';
         $cloneChecker = new CloneCheckerMock();
         self::$dg = new FeedbackDataGenerator(new Feedback(2), $cloneChecker);
         self::$dg2 = new FeedbackDataGenerator(new Feedback(3));
+        self::$dg3 = new FeedbackDataGenerator(new Feedback(4));
         self::$dg0 = new FeedbackDataGenerator(new Feedback());
     }
 
-
-    public static function tearDownAfterClass()
-    {
-        $sql = file_get_contents(__DIR__ . '/../../../../../backup-test.sql');
-        Application::i()->SQL->query($sql);
-        unlink(__DIR__ . '/../../../../../backup-test.sql');
-    }
 
     /**
      * Tests getTitle
@@ -223,5 +213,9 @@ class FeedbackDataGeneratorTest extends PHPUnit_Framework_TestCase
             $suffixText,
             $result['fields']['COMMENTS']
         );
+
+        $result = self::$dg3->getData(true);
+        $this->assertNotRegExp('/Фамилия/umis', $result['fields']['COMMENTS']);
+        $this->assertNotRegExp('/Изображение/umis', $result['fields']['COMMENTS']);
     }
 }

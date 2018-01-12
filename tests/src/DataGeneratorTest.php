@@ -25,24 +25,10 @@ class DataGeneratorTest extends PHPUnit_Framework_TestCase
 
     public static function setUpBeforeClass()
     {
-        ob_start();
-        @General::i()->backupSQL();
-        $sql = ob_get_clean();
-        file_put_contents(__DIR__ . '/../../../../../backup-test.sql', $sql);
-        $newSQL = file_get_contents(__DIR__ . '/../resources/test.sql');
-        Application::i()->SQL->query($newSQL);
         self::$dg = new FeedbackDataGenerator(new Feedback(1));
         self::$dg2 = new FeedbackDataGenerator(new Feedback(2));
         self::$dg3 = new FeedbackDataGenerator(new Feedback(3));
         self::$dg0 = new FeedbackDataGenerator(new Feedback());
-    }
-
-
-    public static function tearDownAfterClass()
-    {
-        $sql = file_get_contents(__DIR__ . '/../../../../../backup-test.sql');
-        Application::i()->SQL->query($sql);
-        unlink(__DIR__ . '/../../../../../backup-test.sql');
     }
 
 
