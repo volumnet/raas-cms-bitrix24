@@ -60,32 +60,40 @@ class FeedbackDataGenerator extends DataGenerator
 
 
     /**
-     * Returns the breadcrumbs array for the parent page
-     * @return array<string>
-     */
-    public function getBreadcrumbsRaw()
-    {
-        $breadcrumbs = array();
-        if ($this->item->page->parents) {
-            foreach ($this->item->page->parents as $row) {
-                $breadcrumbs[] = $row->name;
-            }
-        }
-        $breadcrumbs[] = $this->item->page->name;
-        if ($this->item->material->id) {
-            $breadcrumbs[] = $this->item->material->name;
-        }
-        return $breadcrumbs;
-    }
-
-
-    /**
      * Returns the breadcrumbs string for the parent page
      * @return string
      */
     public function getBreadcrumbs()
     {
-        return implode(' / ', $this->getBreadcrumbsRaw());
+        $breadcrumbs = array();
+        if ($this->item->page->parents) {
+            foreach ($this->item->page->parents as $row) {
+                $breadcrumbs[] = '<a href="http'
+                               .    ($_SERVER['HTTPS'] == 'on' ? 's' : '')
+                               .    '://' . $_SERVER['HTTP_HOST']
+                               .    $row->url
+                               .    '" target="_blank">'
+                               .    htmlspecialchars($row->name)
+                               . '</a>';
+            }
+        }
+        $breadcrumbs[] = '<a href="http'
+                       .    ($_SERVER['HTTPS'] == 'on' ? 's' : '')
+                       .    '://' . $_SERVER['HTTP_HOST']
+                       .    $this->item->page->url
+                       .    '" target="_blank">'
+                       .    htmlspecialchars($this->item->page->name)
+                       . '</a>';
+        if ($this->item->material->id) {
+            $breadcrumbs[] = '<a href="http'
+                       .    ($_SERVER['HTTPS'] == 'on' ? 's' : '')
+                       .    '://' . $_SERVER['HTTP_HOST']
+                       .    $this->item->material->url
+                       .    '" target="_blank">'
+                       .    htmlspecialchars($this->item->material->name)
+                       . '</a>';
+        }
+        return implode(' / ', $breadcrumbs);
     }
 
 
@@ -130,25 +138,25 @@ class FeedbackDataGenerator extends DataGenerator
         $temp = array();
 
         if ($date = $this->getPostDate()) {
-            $temp[] = 'Дата отправки: ' . $date;
+            $temp[] = '<strong>Дата отправки:</strong> ' . $date;
         }
         if ($formName = $this->getFormName()) {
-            $temp[] = 'Форма: ' . $formName;
+            $temp[] = '<strong>Форма:</strong> ' . $formName;
         }
         if ($breadcrumbs = $this->getBreadcrumbs()) {
-            $temp[] = 'Страница: ' . $breadcrumbs;
+            $temp[] = '<strong>Страница:</strong> ' . $breadcrumbs;
         }
         if ($ip = $this->getIp()) {
-            $temp[] = 'IP-адрес: ' . $ip;
+            $temp[] = '<strong>IP-адрес:</strong> ' . $ip;
         }
         if ($userAgent = $this->getUserAgent()) {
-            $temp[] =  'User-Agent: ' . $userAgent;
+            $temp[] =  '<strong>User-Agent:</strong> ' . $userAgent;
         }
         if ($link = $this->getLink()) {
-            $temp[] =  'Просмотреть: ' . $link;
+            $temp[] =  '<strong><a href="' . ($link) . '" target="_blank">Просмотреть</a></strong>';
         }
 
-        return implode("\n", $temp);
+        return '<p>' . implode('<br />' . "\n", $temp) . '</p>' . "\n\n";
     }
 
 
@@ -176,7 +184,7 @@ class FeedbackDataGenerator extends DataGenerator
             } catch (Exception $e) {
             }
         }
-        $comments = implode("\n\n", $temp);
+        $comments = implode('', $temp);
         return $comments;
     }
 }

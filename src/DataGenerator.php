@@ -10,6 +10,7 @@ use SOME\SOME;
 use RAAS\Attachment;
 use RAAS\CMS\Feedback;
 use RAAS\CMS\Shop\Order;
+use SOME\Text;
 
 /**
  * RAAS CMS to Bitrix24 data generator class
@@ -451,13 +452,38 @@ abstract class DataGenerator
         $temp = array();
         foreach ((array)$this->item->fields as $key => $field) {
             if (!in_array($key, $ignoredFields)) {
-                $val = $this->getSingleValue($key);
-                if ($val) {
-                    $temp[] = $field->name . ': ' . $this->getSingleValue($key);
+                switch ($field->datatype) {
+                    case 'image':
+                    case 'file':
+                        $val = $this->getExplodedValue($key);
+                        if ($val) {
+                            $val = array_map(function ($x) {
+                                return '<a href="' . htmlspecialchars($x) . '" target="_blank">' . htmlspecialchars(basename($x)) . '</a>';
+                            }, $val);
+                            $temp[] = '<strong>' . $field->name . ':</strong> ' . implode(', ', $val);
+                        }
+                        break;
+                    case 'email':
+                        $val = $this->getExplodedValue($key);
+                        if ($val) {
+                            $val = array_map(function ($x) {
+                                return '<a href="mailto:' . htmlspecialchars($x) . '">' . htmlspecialchars($x) . '</a>';
+                            }, $val);
+                            $temp[] = '<strong>' . $field->name . ':</strong> ' . implode(', ', $val);
+                        }
+                        break;
+                    default:
+                        $val = $this->getSingleValue($key);
+                        if ($val) {
+                            $temp[] = '<strong>' . $field->name . ':</strong> ' . nl2br(htmlspecialchars($this->getSingleValue($key)));
+                        }
+                        break;
                 }
             }
         }
-        $temp = implode("\n", $temp);
+        if ($temp) {
+            $temp = '<p>' . implode('<br />' . "\n", $temp) . '</p>' . "\n\n";
+        }
         return $temp;
     }
 
@@ -527,12 +553,7 @@ abstract class DataGenerator
     public function getSingleValue($fieldName)
     {
         if (isset($this->item->fields[$fieldName])) {
-            if (in_array($this->item->fields[$fieldName]->datatype, array('image', 'file'))) {
-                $sep = "\n";
-            } else {
-                $sep = ', ';
-            }
-            return implode($sep, $this->getMultipleValue($fieldName));
+            return implode(', ', $this->getMultipleValue($fieldName));
         }
         return '';
     }
@@ -579,7 +600,7 @@ abstract class DataGenerator
                     $similarsByBoth = array_intersect($similarsByPhone, $similarsByEmail);
                     $similarsByBoth = array_map(
                         function ($x) {
-                            return '#' . (int)$x;
+                            return '<a href="/crm/contact/details/' . (int)$x . '/" target="_blank">#' . (int)$x . '</a>';
                         },
                         $similarsByBoth
                     );
@@ -594,7 +615,7 @@ abstract class DataGenerator
                 $similarsByPhone = array_filter($similarsByPhone);
                 $similarsByPhone = array_map(
                     function ($x) {
-                        return '#' . (int)$x;
+                        return '<a href="/crm/contact/details/' . (int)$x . '/" target="_blank">#' . (int)$x . '</a>';
                     },
                     $similarsByPhone
                 );
@@ -608,7 +629,7 @@ abstract class DataGenerator
                 $similarsByEmail = array_filter($similarsByEmail);
                 $similarsByEmail = array_map(
                     function ($x) {
-                        return '#' . (int)$x;
+                        return '<a href="/crm/contact/details/' . (int)$x . '/" target="_blank">#' . (int)$x . '</a>';
                     },
                     $similarsByEmail
                 );
@@ -618,7 +639,7 @@ abstract class DataGenerator
             }
         }
         if ($temp) {
-            return 'НАЙДЕНЫ СОВПАДАЮЩИЕ КОНТАКТЫ:' . "\n" . implode("\n", $temp);
+            return '<p><strong>НАЙДЕНЫ СОВПАДАЮЩИЕ КОНТАКТЫ:</strong><br />' . "\n" . implode('<br />' . "\n", $temp) . '</p>' . "\n\n";
         }
         return '';
     }

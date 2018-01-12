@@ -64,25 +64,23 @@ class FeedbackDataGeneratorTest extends PHPUnit_Framework_TestCase
 
 
     /**
-     * Tests getBreadcrumbsRaw
-     */
-    public function testGetBreadcrumbsRaw()
-    {
-        $result = self::$dg->getBreadcrumbsRaw();
-        $this->assertEquals(array('Главная', 'О компании'), $result);
-
-        $result = self::$dg2->getBreadcrumbsRaw();
-        $this->assertEquals(array('Главная', 'Каталог продукции', 'Категория 1', 'Категория 11', 'Категория 111', 'Товар 2'), $result);
-    }
-
-
-    /**
      * Tests getBreadcrumbs
      */
     public function testGetBreadcrumbs()
     {
         $result = self::$dg->getBreadcrumbs();
-        $this->assertEquals('Главная / О компании', $result);
+        $this->assertEquals('<a href="https://localhost/" target="_blank">Главная</a> / <a href="https://localhost/about/" target="_blank">О компании</a>', $result);
+
+        $result = self::$dg2->getBreadcrumbs();
+        $this->assertEquals(
+            '<a href="https://localhost/" target="_blank">Главная</a> / ' .
+            '<a href="https://localhost/catalog/" target="_blank">Каталог продукции</a> / ' .
+            '<a href="https://localhost/catalog/category1/" target="_blank">Категория 1</a> / ' .
+            '<a href="https://localhost/catalog/category1/category11/" target="_blank">Категория 11</a> / ' .
+            '<a href="https://localhost/catalog/category1/category11/category111/" target="_blank">Категория 111</a> / ' .
+            '<a href="https://localhost/catalog/category1/category11/category111/tovar_2/" target="_blank">Товар 2</a>',
+            $result
+        );
     }
 
 
@@ -123,12 +121,12 @@ class FeedbackDataGeneratorTest extends PHPUnit_Framework_TestCase
     {
         $result = self::$dg->getSuffixText();
         $this->assertEquals(
-            "Дата отправки: 09.01.2018 18:07\n" .
-            "Форма: Обратная связь 2\n" .
-            "Страница: Главная / О компании\n" .
-            "IP-адрес: 127.0.0.1\n" .
-            "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36\n" .
-            "Просмотреть: https://localhost/admin/?p=cms&sub=feedback&action=view&id=2",
+            '<p><strong>Дата отправки:</strong> 09.01.2018 18:07<br />' . "\n" .
+            '<strong>Форма:</strong> Обратная связь 2<br />' . "\n" .
+            '<strong>Страница:</strong> <a href="https://localhost/" target="_blank">Главная</a> / <a href="https://localhost/about/" target="_blank">О компании</a><br />' . "\n" .
+            '<strong>IP-адрес:</strong> 127.0.0.1<br />' . "\n" .
+            '<strong>User-Agent:</strong> Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36<br />' . "\n" .
+            '<strong><a href="https://localhost/admin/?p=cms&sub=feedback&action=view&id=2" target="_blank">Просмотреть</a></strong></p>' . "\n\n",
             $result
         );
     }
@@ -140,26 +138,25 @@ class FeedbackDataGeneratorTest extends PHPUnit_Framework_TestCase
     public function testGetData()
     {
 
-        $suffixText = "\n"
-                    . "Дата отправки: 09.01.2018 18:07\n"
-                    . "Форма: Обратная связь 2\n"
-                    . "Страница: Главная / О компании\n"
-                    . "IP-адрес: 127.0.0.1\n"
-                    . "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36\n"
-                    . "Просмотреть: https://localhost/admin/?p=cms&sub=feedback&action=view&id=2\n"
-                    . "\n"
-                    . "НАЙДЕНЫ СОВПАДАЮЩИЕ КОНТАКТЫ:\n"
-                    . "Телефон +7 999 000-00-00, e-mail test@test.org: #1, #2, #3\n"
-                    . "Телефон +7 999 000-00-00, e-mail test2@test.org: #1, #2, #3\n"
-                    . "Телефон +7 999 000-11-11, e-mail test@test.org: #1, #2, #3\n"
-                    . "Телефон +7 999 000-11-11, e-mail test2@test.org: #1, #2, #3\n"
-                    . "Телефон +7 999 000-22-22, e-mail test@test.org: #1, #2, #3\n"
-                    . "Телефон +7 999 000-22-22, e-mail test2@test.org: #1, #2, #3\n"
-                    . "Телефон +7 999 000-00-00: #1, #2, #3\n"
-                    . "Телефон +7 999 000-11-11: #1, #2, #3\n"
-                    . "Телефон +7 999 000-22-22: #1, #2, #3\n"
-                    . "E-mail test@test.org: #1, #2, #3\n"
-                    . "E-mail test2@test.org: #1, #2, #3";
+        $suffixText = '<p>'
+                    . '<strong>Дата отправки:</strong> 09.01.2018 18:07<br />' . "\n"
+                    . '<strong>Форма:</strong> Обратная связь 2<br />' . "\n"
+                    . '<strong>Страница:</strong> <a href="https://localhost/" target="_blank">Главная</a> / <a href="https://localhost/about/" target="_blank">О компании</a><br />' . "\n"
+                    . '<strong>IP-адрес:</strong> 127.0.0.1<br />' . "\n"
+                    . '<strong>User-Agent:</strong> Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36<br />' . "\n"
+                    . '<strong><a href="https://localhost/admin/?p=cms&sub=feedback&action=view&id=2" target="_blank">Просмотреть</a></strong></p>' . "\n\n"
+                    . '<p><strong>НАЙДЕНЫ СОВПАДАЮЩИЕ КОНТАКТЫ:</strong><br />' . "\n"
+                    . 'Телефон +7 999 000-00-00, e-mail test@test.org: <a href="/crm/contact/details/1/" target="_blank">#1</a>, <a href="/crm/contact/details/2/" target="_blank">#2</a>, <a href="/crm/contact/details/3/" target="_blank">#3</a><br />' . "\n"
+                    . 'Телефон +7 999 000-00-00, e-mail test2@test.org: <a href="/crm/contact/details/1/" target="_blank">#1</a>, <a href="/crm/contact/details/2/" target="_blank">#2</a>, <a href="/crm/contact/details/3/" target="_blank">#3</a><br />' . "\n"
+                    . 'Телефон +7 999 000-11-11, e-mail test@test.org: <a href="/crm/contact/details/1/" target="_blank">#1</a>, <a href="/crm/contact/details/2/" target="_blank">#2</a>, <a href="/crm/contact/details/3/" target="_blank">#3</a><br />' . "\n"
+                    . 'Телефон +7 999 000-11-11, e-mail test2@test.org: <a href="/crm/contact/details/1/" target="_blank">#1</a>, <a href="/crm/contact/details/2/" target="_blank">#2</a>, <a href="/crm/contact/details/3/" target="_blank">#3</a><br />' . "\n"
+                    . 'Телефон +7 999 000-22-22, e-mail test@test.org: <a href="/crm/contact/details/1/" target="_blank">#1</a>, <a href="/crm/contact/details/2/" target="_blank">#2</a>, <a href="/crm/contact/details/3/" target="_blank">#3</a><br />' . "\n"
+                    . 'Телефон +7 999 000-22-22, e-mail test2@test.org: <a href="/crm/contact/details/1/" target="_blank">#1</a>, <a href="/crm/contact/details/2/" target="_blank">#2</a>, <a href="/crm/contact/details/3/" target="_blank">#3</a><br />' . "\n"
+                    . 'Телефон +7 999 000-00-00: <a href="/crm/contact/details/1/" target="_blank">#1</a>, <a href="/crm/contact/details/2/" target="_blank">#2</a>, <a href="/crm/contact/details/3/" target="_blank">#3</a><br />' . "\n"
+                    . 'Телефон +7 999 000-11-11: <a href="/crm/contact/details/1/" target="_blank">#1</a>, <a href="/crm/contact/details/2/" target="_blank">#2</a>, <a href="/crm/contact/details/3/" target="_blank">#3</a><br />' . "\n"
+                    . 'Телефон +7 999 000-22-22: <a href="/crm/contact/details/1/" target="_blank">#1</a>, <a href="/crm/contact/details/2/" target="_blank">#2</a>, <a href="/crm/contact/details/3/" target="_blank">#3</a><br />' . "\n"
+                    . 'E-mail test@test.org: <a href="/crm/contact/details/1/" target="_blank">#1</a>, <a href="/crm/contact/details/2/" target="_blank">#2</a>, <a href="/crm/contact/details/3/" target="_blank">#3</a><br />' . "\n"
+                    . 'E-mail test2@test.org: <a href="/crm/contact/details/1/" target="_blank">#1</a>, <a href="/crm/contact/details/2/" target="_blank">#2</a>, <a href="/crm/contact/details/3/" target="_blank">#3</a></p>' . "\n\n";
 
         $result = self::$dg->getData(false);
         $this->assertEquals('WEB', $result['fields']['SOURCE_ID']);
@@ -183,33 +180,31 @@ class FeedbackDataGeneratorTest extends PHPUnit_Framework_TestCase
         $this->assertNull($result['fields']['WEB']);
 
         $this->assertEquals(
-            "Изображение: https://localhost/files/cms/common/arboretum_tree_rings_4.jpg\n" .
-            "https://localhost/files/cms/common/brownleaves02899_4.jpg\n" .
-            "Согласен(на) на обработку персональных данных: Да\n" .
-            "Желаемое время заказа: 11.01.2018 10:00\n" .
+            '<p><strong>Изображение:</strong> <a href="https://localhost/files/cms/common/arboretum_tree_rings_4.jpg" target="_blank">arboretum_tree_rings_4.jpg</a>, <a href="https://localhost/files/cms/common/brownleaves02899_4.jpg" target="_blank">brownleaves02899_4.jpg</a><br />' . "\n" .
+            '<strong>Согласен(на) на обработку персональных данных:</strong> Да<br />' . "\n" .
+            '<strong>Желаемое время заказа:</strong> 11.01.2018 10:00</p>' . "\n\n" .
             $suffixText,
             $result['fields']['COMMENTS']
         );
 
         $result = self::$dg->getData(true);
         $this->assertEquals(
-            "Фамилия: Тестовый\n" .
-            "Имя: Пользователь\n" .
-            "Отчество: 2006\n" .
-            "Страна: Россия\n" .
-            "Индекс: 123456\n" .
-            "Область: Свердловская\n" .
-            "Дата рождения: 02.03.1974\n" .
-            "Компания: Тестовая компания\n" .
-            "Должность: тестировщик\n" .
-            "E-mail: test@test.org, test2@test.org\n" .
-            "Телефон: +7 999 000-00-00, +7 999 000-11-11; +7 999 000-22-22\n" .
-            "Изображение: https://localhost/files/cms/common/arboretum_tree_rings_4.jpg\n" .
-            "https://localhost/files/cms/common/brownleaves02899_4.jpg\n" .
-            "Согласен(на) на обработку персональных данных: Да\n" .
-            "Адрес: Тестовый адрес\n" .
-            "Город: Екатеринбург\n" .
-            "Желаемое время заказа: 11.01.2018 10:00\n" .
+            '<p><strong>Фамилия:</strong> Тестовый<br />' . "\n" .
+            '<strong>Имя:</strong> Пользователь<br />' . "\n" .
+            '<strong>Отчество:</strong> 2006<br />' . "\n" .
+            '<strong>Страна:</strong> Россия<br />' . "\n" .
+            '<strong>Индекс:</strong> 123456<br />' . "\n" .
+            '<strong>Область:</strong> Свердловская<br />' . "\n" .
+            '<strong>Дата рождения:</strong> 02.03.1974<br />' . "\n" .
+            '<strong>Компания:</strong> Тестовая компания<br />' . "\n" .
+            '<strong>Должность:</strong> тестировщик<br />' . "\n" .
+            '<strong>E-mail:</strong> <a href="mailto:test@test.org">test@test.org</a>, <a href="mailto:test2@test.org">test2@test.org</a><br />' . "\n" .
+            '<strong>Телефон:</strong> +7 999 000-00-00, +7 999 000-11-11; +7 999 000-22-22<br />' . "\n" .
+            '<strong>Изображение:</strong> <a href="https://localhost/files/cms/common/arboretum_tree_rings_4.jpg" target="_blank">arboretum_tree_rings_4.jpg</a>, <a href="https://localhost/files/cms/common/brownleaves02899_4.jpg" target="_blank">brownleaves02899_4.jpg</a><br />' . "\n" .
+            '<strong>Согласен(на) на обработку персональных данных:</strong> Да<br />' . "\n" .
+            '<strong>Адрес:</strong> Тестовый адрес<br />' . "\n" .
+            '<strong>Город:</strong> Екатеринбург<br />' . "\n" .
+            '<strong>Желаемое время заказа:</strong> 11.01.2018 10:00</p>' . "\n\n" .
             $suffixText,
             $result['fields']['COMMENTS']
         );

@@ -75,8 +75,9 @@ class OrderDataGenerator extends FeedbackDataGenerator
     public function getItemRow(Material $item)
     {
         return $item->amount . ' x ' .
-               $item->name .
-               ' (http' . ($_SERVER['HTTPS'] == 'on' ? 's' : '') . '://' . $_SERVER['HTTP_HOST'] . $item->url . ')';
+               '<a href="http' . ($_SERVER['HTTPS'] == 'on' ? 's' : '') . '://' . $_SERVER['HTTP_HOST'] . $item->url . '" target="_blank">' .
+                    htmlspecialchars($item->name) .
+               '</a>';
     }
 
 
@@ -90,7 +91,7 @@ class OrderDataGenerator extends FeedbackDataGenerator
         foreach ($this->item->items as $row) {
             $temp[] = $this->getItemRow($row);
         }
-        return implode("\n", $temp);
+        return $temp ? ('<p>' . implode('<br />' . "\n", $temp) . '</p>' . "\n\n") : '';
     }
 
 
@@ -115,31 +116,31 @@ class OrderDataGenerator extends FeedbackDataGenerator
         $temp = array();
 
         if ($date = $this->getPostDate()) {
-            $temp[] = 'Дата отправки: ' . $date;
+            $temp[] = '<strong>Дата отправки:</strong> ' . $date;
         }
         if ($orderStatus = $this->getOrderStatus()) {
-            $temp[] = 'Статус заказа: ' . $orderStatus;
+            $temp[] = '<strong>Статус заказа:</strong> ' . $orderStatus;
         }
         if ($paymentStatus = $this->getPaymentStatus()) {
-            $temp[] = 'Статус оплаты: ' . $paymentStatus;
+            $temp[] = '<strong>Статус оплаты:</strong> ' . $paymentStatus;
         }
         if ($cartName = $this->getCartName()) {
-            $temp[] = 'Корзина: ' . $cartName;
+            $temp[] = '<strong>Корзина:</strong> ' . $cartName;
         }
         if ($breadcrumbs = $this->getBreadcrumbs()) {
-            $temp[] = 'Страница: ' . $breadcrumbs;
+            $temp[] = '<strong>Страница:</strong> ' . $breadcrumbs;
         }
         if ($ip = $this->getIp()) {
-            $temp[] = 'IP-адрес: ' . $ip;
+            $temp[] = '<strong>IP-адрес:</strong> ' . $ip;
         }
         if ($userAgent = $this->getUserAgent()) {
-            $temp[] =  'User-Agent: ' . $userAgent;
+            $temp[] = '<strong>User-Agent:</strong> ' . $userAgent;
         }
         if ($link = $this->getLink()) {
-            $temp[] =  'Просмотреть: ' . $link;
+            $temp[] = '<strong><a href="' . ($link) . '" target="_blank">Просмотреть</a></strong>';
         }
 
-        return implode("\n", $temp);
+        return '<p>' . implode('<br />' . "\n", $temp) . '</p>' . "\n\n";
     }
 
 
@@ -170,7 +171,7 @@ class OrderDataGenerator extends FeedbackDataGenerator
             } catch (Exception $e) {
             }
         }
-        $comments = implode("\n\n", $temp);
+        $comments = implode('', $temp);
         return $comments;
     }
 }

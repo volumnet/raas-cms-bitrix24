@@ -70,7 +70,7 @@ class OrderDataGeneratorTest extends PHPUnit_Framework_TestCase
         $m = new Material(11);
         $m->amount = 3;
         $result = self::$dg->getItemRow($m);
-        $this->assertEquals('3 x Товар 2 (https://localhost/catalog/category1/category11/category111/tovar_2/)', $result);
+        $this->assertEquals('3 x <a href="https://localhost/catalog/category1/category11/category111/tovar_2/" target="_blank">Товар 2</a>', $result);
     }
 
 
@@ -81,9 +81,9 @@ class OrderDataGeneratorTest extends PHPUnit_Framework_TestCase
     {
         $result = self::$dg->getGoods();
         $this->assertEquals(
-            "1 x Товар 2 (https://localhost/catalog/category1/category11/category111/tovar_2/)\n" .
-            "2 x Товар 3 (https://localhost/catalog/category1/category11/category111/tovar_3/)\n" .
-            "3 x Товар 4 (https://localhost/catalog/category1/category11/category111/tovar_4/)",
+            '<p>1 x <a href="https://localhost/catalog/category1/category11/category111/tovar_2/" target="_blank">Товар 2</a><br />' . "\n" .
+            '2 x <a href="https://localhost/catalog/category1/category11/category111/tovar_3/" target="_blank">Товар 3</a><br />' . "\n" .
+            '3 x <a href="https://localhost/catalog/category1/category11/category111/tovar_4/" target="_blank">Товар 4</a></p>' . "\n\n",
             $result
         );
     }
@@ -106,14 +106,14 @@ class OrderDataGeneratorTest extends PHPUnit_Framework_TestCase
     {
         $result = self::$dg->getSuffixText();
         $this->assertEquals(
-            "Дата отправки: 09.01.2018 18:08\n" .
-            "Статус заказа: Новый\n" .
-            "Статус оплаты: Не оплачен\n" .
-            "Корзина: Корзина\n" .
-            "Страница: Главная / Корзина\n" .
-            "IP-адрес: 127.0.0.1\n" .
-            "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36\n" .
-            "Просмотреть: https://localhost/admin/?p=cms&m=shop&sub=&action=view&id=1",
+            '<p><strong>Дата отправки:</strong> 09.01.2018 18:08<br />' . "\n" .
+            '<strong>Статус заказа:</strong> Новый<br />' . "\n" .
+            '<strong>Статус оплаты:</strong> Не оплачен<br />' . "\n" .
+            '<strong>Корзина:</strong> Корзина<br />' . "\n" .
+            '<strong>Страница:</strong> <a href="https://localhost/" target="_blank">Главная</a> / <a href="https://localhost/cart/" target="_blank">Корзина</a><br />' . "\n" .
+            '<strong>IP-адрес:</strong> 127.0.0.1<br />' . "\n" .
+            '<strong>User-Agent:</strong> Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36<br />' . "\n" .
+            '<strong><a href="https://localhost/admin/?p=cms&m=shop&sub=&action=view&id=1" target="_blank">Просмотреть</a></strong></p>' . "\n\n",
             $result
         );
     }
@@ -124,29 +124,26 @@ class OrderDataGeneratorTest extends PHPUnit_Framework_TestCase
      */
     public function testGetData()
     {
-        $suffixText = "\n"
-                    . "1 x Товар 2 (https://localhost/catalog/category1/category11/category111/tovar_2/)\n"
-                    . "2 x Товар 3 (https://localhost/catalog/category1/category11/category111/tovar_3/)\n"
-                    . "3 x Товар 4 (https://localhost/catalog/category1/category11/category111/tovar_4/)\n"
-                    . "\n"
-                    . "Дата отправки: 09.01.2018 18:08\n"
-                    . "Статус заказа: Новый\n"
-                    . "Статус оплаты: Не оплачен\n"
-                    . "Корзина: Корзина\n"
-                    . "Страница: Главная / Корзина\n"
-                    . "IP-адрес: 127.0.0.1\n"
-                    . "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36\n"
-                    . "Просмотреть: https://localhost/admin/?p=cms&m=shop&sub=&action=view&id=1\n"
-                    . "\n"
-                    . "НАЙДЕНЫ СОВПАДАЮЩИЕ КОНТАКТЫ:\n"
-                    . "Телефон +7 999 000-00-00, e-mail test@test.org: #1, #2, #3\n"
-                    . "Телефон +7 999 000-00-00: #1, #2, #3\n"
-                    . "E-mail test@test.org: #1, #2, #3";
+        $suffixText = '<p>1 x <a href="https://localhost/catalog/category1/category11/category111/tovar_2/" target="_blank">Товар 2</a><br />' . "\n"
+                    . '2 x <a href="https://localhost/catalog/category1/category11/category111/tovar_3/" target="_blank">Товар 3</a><br />' . "\n"
+                    . '3 x <a href="https://localhost/catalog/category1/category11/category111/tovar_4/" target="_blank">Товар 4</a></p>' . "\n\n"
+                    . '<p><strong>Дата отправки:</strong> 09.01.2018 18:08<br />' . "\n"
+                    . '<strong>Статус заказа:</strong> Новый<br />' . "\n"
+                    . '<strong>Статус оплаты:</strong> Не оплачен<br />' . "\n"
+                    . '<strong>Корзина:</strong> Корзина<br />' . "\n"
+                    . '<strong>Страница:</strong> <a href="https://localhost/" target="_blank">Главная</a> / <a href="https://localhost/cart/" target="_blank">Корзина</a><br />' . "\n"
+                    . '<strong>IP-адрес:</strong> 127.0.0.1<br />' . "\n"
+                    . '<strong>User-Agent:</strong> Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36<br />' . "\n"
+                    . '<strong><a href="https://localhost/admin/?p=cms&m=shop&sub=&action=view&id=1" target="_blank">Просмотреть</a></strong></p>' . "\n\n"
+                    . '<p><strong>НАЙДЕНЫ СОВПАДАЮЩИЕ КОНТАКТЫ:</strong><br />' . "\n"
+                    . 'Телефон +7 999 000-00-00, e-mail test@test.org: <a href="/crm/contact/details/1/" target="_blank">#1</a>, <a href="/crm/contact/details/2/" target="_blank">#2</a>, <a href="/crm/contact/details/3/" target="_blank">#3</a><br />' . "\n"
+                    . 'Телефон +7 999 000-00-00: <a href="/crm/contact/details/1/" target="_blank">#1</a>, <a href="/crm/contact/details/2/" target="_blank">#2</a>, <a href="/crm/contact/details/3/" target="_blank">#3</a><br />' . "\n"
+                    . 'E-mail test@test.org: <a href="/crm/contact/details/1/" target="_blank">#1</a>, <a href="/crm/contact/details/2/" target="_blank">#2</a>, <a href="/crm/contact/details/3/" target="_blank">#3</a></p>' . "\n\n";
 
         $result = self::$dg->getData(false);
         $this->assertEquals(
-            "Комментарий: Тестовый комментарий\n" .
-            "Согласен(на) на обработку персональных данных: Да\n" .
+            '<p><strong>Комментарий:</strong> Тестовый комментарий<br />' . "\n" .
+            '<strong>Согласен(на) на обработку персональных данных:</strong> Да</p>' . "\n\n" .
             $suffixText,
             $result['fields']['COMMENTS']
         );

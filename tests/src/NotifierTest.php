@@ -37,11 +37,11 @@ class NotifierTest extends PHPUnit_Framework_TestCase
         $result = $n->notify($f, true);
         $this->assertEquals(33, $result->form->{'fields[ASSIGNED_BY_ID]'});
         $this->assertEquals('WEB', $result->form->{'fields[SOURCE_ID]'});
-        $this->assertRegExp('/Имя: Пользователь/', $result->form->{'fields[COMMENTS]'});
+        $this->assertRegExp('/Имя:\\<\\/strong\\> Пользователь/', $result->form->{'fields[COMMENTS]'});
 
         $result = $n->notify($f, false);
         $this->assertEquals(33, $result->form->{'fields[ASSIGNED_BY_ID]'});
         $this->assertEquals('WEB', $result->form->{'fields[SOURCE_ID]'});
-        $this->assertNotRegExp('/Имя: Пользователь/', $result->form->{'fields[COMMENTS]'});
+        $this->assertNotRegExp('/Имя:\\<\\/strong\\> Пользователь/', $result->form->{'fields[COMMENTS]'});
     }
 }

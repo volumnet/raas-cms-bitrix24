@@ -430,14 +430,14 @@ class DataGeneratorTest extends PHPUnit_Framework_TestCase
         );
         $result = self::$dg2->getSimilarContactsText($src);
         $this->assertEquals(
-            "НАЙДЕНЫ СОВПАДАЮЩИЕ КОНТАКТЫ:\n" .
-            "Телефон +7 999 000-00-00, e-mail test@test.org: #3\n" .
-            "Телефон +7 999 000-11-22, e-mail test@test.org: #3, #4\n" .
-            "Телефон +7 999 000-11-22, e-mail test2@test.org: #4\n" .
-            "Телефон +7 999 000-00-00: #1, #2, #3\n" .
-            "Телефон +7 999 000-11-22: #2, #3, #4\n" .
-            "E-mail test@test.org: #3, #4, #5\n" .
-            "E-mail test2@test.org: #4, #5, #6",
+            '<p><strong>НАЙДЕНЫ СОВПАДАЮЩИЕ КОНТАКТЫ:</strong><br />' . "\n" .
+            'Телефон +7 999 000-00-00, e-mail test@test.org: <a href="/crm/contact/details/3/" target="_blank">#3</a><br />' . "\n" .
+            'Телефон +7 999 000-11-22, e-mail test@test.org: <a href="/crm/contact/details/3/" target="_blank">#3</a>, <a href="/crm/contact/details/4/" target="_blank">#4</a><br />' . "\n" .
+            'Телефон +7 999 000-11-22, e-mail test2@test.org: <a href="/crm/contact/details/4/" target="_blank">#4</a><br />' . "\n" .
+            'Телефон +7 999 000-00-00: <a href="/crm/contact/details/1/" target="_blank">#1</a>, <a href="/crm/contact/details/2/" target="_blank">#2</a>, <a href="/crm/contact/details/3/" target="_blank">#3</a><br />' . "\n" .
+            'Телефон +7 999 000-11-22: <a href="/crm/contact/details/2/" target="_blank">#2</a>, <a href="/crm/contact/details/3/" target="_blank">#3</a>, <a href="/crm/contact/details/4/" target="_blank">#4</a><br />' . "\n" .
+            'E-mail test@test.org: <a href="/crm/contact/details/3/" target="_blank">#3</a>, <a href="/crm/contact/details/4/" target="_blank">#4</a>, <a href="/crm/contact/details/5/" target="_blank">#5</a><br />' . "\n" .
+            'E-mail test2@test.org: <a href="/crm/contact/details/4/" target="_blank">#4</a>, <a href="/crm/contact/details/5/" target="_blank">#5</a>, <a href="/crm/contact/details/6/" target="_blank">#6</a></p>' . "\n\n",
             $result
         );
 
