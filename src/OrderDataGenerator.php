@@ -7,7 +7,6 @@
 namespace RAAS\CMS\Bitrix24;
 
 use RAAS\CMS\Shop\Order;
-use RAAS\CMS\Shop\Module;
 use RAAS\CMS\Material;
 use Exception;
 
@@ -53,7 +52,7 @@ class OrderDataGenerator extends FeedbackDataGenerator
      */
     public function getOrderStatus()
     {
-        return $this->item->status->id ? $this->item->status->name : Module::i()->view->_('ORDER_STATUS_NEW');
+        return $this->item->status->id ? $this->item->status->name : 'Новый';
     }
 
 
@@ -63,7 +62,7 @@ class OrderDataGenerator extends FeedbackDataGenerator
      */
     public function getPaymentStatus()
     {
-        return Module::i()->view->_($this->item->paid ? 'PAYMENT_PAID' : 'PAYMENT_NOT_PAID');
+        return $this->item->paid ? 'Оплачен' : 'Не оплачен';
     }
 
 
