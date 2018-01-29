@@ -2,7 +2,7 @@
     "name": "volumnet/raas-cms-bitrix24",
     "description": "Bitrix24 adapter for RAAS4.CMS",
     "type": "library",
-    "license": "GPL v3",
+    "license": "GPL-3.0-or-later",
     "authors": [
         {
             "name": "Alex V. Surnin",
