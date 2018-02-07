@@ -31,15 +31,23 @@ class Notifier
     protected $assignedById;
 
     /**
+     * Bitrix24 source ID#
+     * @var string
+     */
+    protected $sourceId;
+
+    /**
      * Class constructor
      * @param string $domain Bitrix24 domain
      * @param string $webhook Webhook ID#
      * @param int $assignedById Bitrix24 user ID# to assign lead to
+     * @param string $sourceId Bitrix24 source ID#
      */
-    public function __construct($domain, $webhook, $assignedById = null)
+    public function __construct($domain, $webhook, $assignedById = null, $sourceId = null)
     {
         $this->webhook = new Webhook($domain, $webhook);
         $this->assignedById = (int)$assignedById ?: null;
+        $this->sourceId = trim($sourceId);
     }
 
 
@@ -58,6 +66,9 @@ class Notifier
                 if ($data = $generator->getData($reportAllFields)) {
                     if ((int)$this->assignedById) {
                         $data['fields']['ASSIGNED_BY_ID'] = (int)$this->assignedById;
+                    }
+                    if ($this->sourceId) {
+                        $data['fields']['SOURCE_ID'] = $this->sourceId;
                     }
                     $result = $this->webhook->method('crm.lead.add', $data);
                 }

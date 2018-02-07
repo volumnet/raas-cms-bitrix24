@@ -159,7 +159,6 @@ class FeedbackDataGeneratorTest extends PHPUnit_Framework_TestCase
                     . 'E-mail test2@test.org: <a href="/crm/contact/details/1/" target="_blank">#1</a>, <a href="/crm/contact/details/2/" target="_blank">#2</a>, <a href="/crm/contact/details/3/" target="_blank">#3</a></p>' . "\n\n";
 
         $result = self::$dg->getData(false);
-        $this->assertEquals('WEB', $result['fields']['SOURCE_ID']);
         $this->assertEquals('Заявка #2 с формы «Обратная связь 2» (localhost)', $result['fields']['TITLE']);
         $this->assertEquals('Пользователь', $result['fields']['NAME']);
         $this->assertEquals('2006', $result['fields']['SECOND_NAME']);

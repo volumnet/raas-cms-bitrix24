@@ -19,13 +19,17 @@ class NotifierTest extends PHPUnit_Framework_TestCase
     public function testNotify()
     {
         require_once __DIR__ . '/../mocks/WebhookMock.php';
-        $n = new Notifier('http://httpbin.org/post', '123', 33);
+        $n = new Notifier('http://httpbin.org/post', '123', 33, 'WEB');
+        $p = new ReflectionProperty(Notifier::class, 'sourceId');
+        $p->setAccessible(true);
+        $si = $p->getValue($n);
+        $this->assertEquals('WEB', $si);
 
         $m = new Material();
         $result = $n->notify($m, true);
         $this->assertFalse($result);
 
-        $n = new Notifier('http://httpbin.org/post', '123', 33);
+        $n = new Notifier('http://httpbin.org/post', '123', 33, 'WEB');
         $f = new Feedback(2);
         $result = $n->notify($f, true);
         $this->assertFalse($result);

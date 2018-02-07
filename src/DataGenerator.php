@@ -76,7 +76,6 @@ abstract class DataGenerator
         $result = array();
         $fields = array();
 
-        $fields['SOURCE_ID'] = 'WEB';
         if ($title = $this->getTitle()) {
             $fields['TITLE'] = $title;
         }
