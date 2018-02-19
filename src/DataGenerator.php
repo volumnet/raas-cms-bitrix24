@@ -473,7 +473,7 @@ abstract class DataGenerator
                         break;
                     default:
                         $val = $this->getSingleValue($key);
-                        if ($val) {
+                        if (trim($val) !== '') {
                             $temp[] = '<strong>' . $field->name . ':</strong> ' . nl2br(htmlspecialchars($this->getSingleValue($key)));
                         }
                         break;
