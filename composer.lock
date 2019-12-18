@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b20191b8efaeb415165d7ea183925a6d",
+    "content-hash": "025ea505de7941a3e943f166d43decf9",
     "packages": [
         {
             "name": "electrolinux/phpquery",
@@ -48,23 +48,26 @@
         },
         {
             "name": "volumnet/bitrix24",
-            "version": "1.0.3",
+            "version": "1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/volumnet/bitrix24.git",
-                "reference": "06d997db456791227c9adb94a55a2b513baca403"
+                "reference": "5add9e90bdaf63f0c5b990bac924381b56608b79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/volumnet/bitrix24/zipball/06d997db456791227c9adb94a55a2b513baca403",
-                "reference": "06d997db456791227c9adb94a55a2b513baca403",
+                "url": "https://api.github.com/repos/volumnet/bitrix24/zipball/5add9e90bdaf63f0c5b990bac924381b56608b79",
+                "reference": "5add9e90bdaf63f0c5b990bac924381b56608b79",
                 "shasum": ""
             },
             "require": {
                 "volumnet/curl": "^1.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^5.3"
+                "phpunit/phpunit": "^5.3",
+                "volumnet/raas.cms": "^4.2.17",
+                "volumnet/raas.cms.shop": "^4.2.7",
+                "volumnet/raas.kernel": "^4.2.14"
             },
             "type": "library",
             "autoload": {
@@ -83,7 +86,7 @@
                 }
             ],
             "description": "VolumNet Bitrix24 Webhooks implementation",
-            "time": "2018-01-29T14:48:49+00:00"
+            "time": "2019-12-18T14:34:02+00:00"
         },
         {
             "name": "volumnet/curl",
@@ -1441,6 +1444,7 @@
                 "mock",
                 "xunit"
             ],
+            "abandoned": true,
             "time": "2017-06-30T09:13:00+00:00"
         },
         {
@@ -2057,7 +2061,7 @@
                 "kcfinder",
                 "manager"
             ],
-            "time": "2014-08-24T00:00:00+00:00"
+            "time": "2014-09-27T18:47:34+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
