@@ -1,2 +1,4 @@
 vendor
 coverage
+components
+config.php

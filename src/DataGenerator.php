@@ -2,7 +2,7 @@
 /**
  * RAAS CMS to Bitrix24 data generator
  * @author Alex V. Surnin <info@volumnet.ru>
- * @copyright Volume Networks, 2018
+ * @copyright Volume Networks, 2019
  */
 namespace RAAS\CMS\Bitrix24;
 

@@ -8,9 +8,9 @@ use RAAS\CMS\Shop\Order;
 use RAAS\CMS\Material;
 
 /**
- * RAAS CMS to Bitrix24 data generator for orders test
+ * RAAS CMS to Bitrix24 data generator trait for orders test
  */
-class OrderDataGeneratorTest extends PHPUnit_Framework_TestCase
+class OrderDataTraitTest extends PHPUnit_Framework_TestCase
 {
     protected static $dg;
 

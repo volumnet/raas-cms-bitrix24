@@ -7,9 +7,9 @@ use RAAS\Application;
 use RAAS\CMS\Feedback;
 
 /**
- * RAAS CMS to Bitrix24 data generator for feedbacks test
+ * RAAS CMS to Bitrix24 data generator trait for feedbacks test
  */
-class FeedbackDataGeneratorTest extends PHPUnit_Framework_TestCase
+class FeedbackDataTraitTest extends PHPUnit_Framework_TestCase
 {
     protected static $dg;
 
