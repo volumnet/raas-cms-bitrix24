@@ -18,7 +18,7 @@
         "volumnet/raas.cms.shop": "^4.2.7"
     },
     "require": {
-        "volumnet/bitrix24": "^1.1.4"
+        "volumnet/bitrix24": "^1.2.2"
     },
     "scripts": {
         "test": [
