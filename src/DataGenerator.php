@@ -459,7 +459,7 @@ abstract class DataGenerator
                             $val = array_map(function ($x) {
                                 return '<a href="' . htmlspecialchars($x) . '" target="_blank">' . htmlspecialchars(basename($x)) . '</a>';
                             }, $val);
-                            $temp[] = '<strong>' . $field->name . ':</strong> ' . implode(', ', $val);
+                            $temp[] = $field->name . ': ' . implode(', ', $val);
                         }
                         break;
                     case 'email':
@@ -468,13 +468,13 @@ abstract class DataGenerator
                             $val = array_map(function ($x) {
                                 return '<a href="mailto:' . htmlspecialchars($x) . '">' . htmlspecialchars($x) . '</a>';
                             }, $val);
-                            $temp[] = '<strong>' . $field->name . ':</strong> ' . implode(', ', $val);
+                            $temp[] = $field->name . ': ' . implode(', ', $val);
                         }
                         break;
                     default:
                         $val = $this->getSingleValue($key);
                         if (trim($val) !== '') {
-                            $temp[] = '<strong>' . $field->name . ':</strong> ' . nl2br(htmlspecialchars($this->getSingleValue($key)));
+                            $temp[] = $field->name . ': ' . nl2br(htmlspecialchars($this->getSingleValue($key)));
                         }
                         break;
                 }
@@ -638,7 +638,7 @@ abstract class DataGenerator
             }
         }
         if ($temp) {
-            return '<p><strong>НАЙДЕНЫ СОВПАДАЮЩИЕ КОНТАКТЫ:</strong><br />' . "\n" . implode('<br />' . "\n", $temp) . '</p>' . "\n\n";
+            return '<p>НАЙДЕНЫ СОВПАДАЮЩИЕ КОНТАКТЫ:<br />' . "\n" . implode('<br />' . "\n", $temp) . '</p>' . "\n\n";
         }
         return '';
     }

@@ -46,6 +46,6 @@ class TaskDataGeneratorTest extends PHPUnit_Framework_TestCase
     {
         $result = self::$dg->getData();
         $this->assertEquals('Заявка #1 с формы «Обратная связь» (localhost)', $result['fields']['TITLE']);
-        $this->assertContains('<strong>Телефон:</strong> +7 999 000-00-00, +7 999 000-11-22', $result['fields']['DESCRIPTION']);
+        $this->assertContains('Телефон: +7 999 000-00-00, +7 999 000-11-22', $result['fields']['DESCRIPTION']);
     }
 }

@@ -42,6 +42,6 @@ class TaskNotifierTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(33, $result->form->{'fields[RESPONSIBLE_ID]'});
         $this->assertEquals(11, $result->form->{'fields[AUDITORS][0]'});
         $this->assertEquals(22, $result->form->{'fields[AUDITORS][1]'});
-        $this->assertRegExp('/Имя:\\<\\/strong\\> Пользователь/', $result->form->{'fields[DESCRIPTION]'});
+        $this->assertRegExp('/Имя: Пользователь/', $result->form->{'fields[DESCRIPTION]'});
     }
 }

@@ -2,3 +2,4 @@ vendor
 coverage
 components
 config.php
+composer.lock 

@@ -126,22 +126,22 @@ trait FeedbackDataTrait
         $temp = array();
 
         if ($date = $this->getPostDate()) {
-            $temp[] = '<strong>Дата отправки:</strong> ' . $date;
+            $temp[] = 'Дата отправки: ' . $date;
         }
         if ($formName = $this->getFormName()) {
-            $temp[] = '<strong>Форма:</strong> ' . $formName;
+            $temp[] = 'Форма: ' . $formName;
         }
         if ($breadcrumbs = $this->getBreadcrumbs()) {
-            $temp[] = '<strong>Страница:</strong> ' . $breadcrumbs;
+            $temp[] = 'Страница: ' . $breadcrumbs;
         }
         if ($ip = $this->getIp()) {
-            $temp[] = '<strong>IP-адрес:</strong> ' . $ip;
+            $temp[] = 'IP-адрес: ' . $ip;
         }
         if ($userAgent = $this->getUserAgent()) {
-            $temp[] =  '<strong>User-Agent:</strong> ' . $userAgent;
+            $temp[] =  'User-Agent: ' . $userAgent;
         }
         if ($link = $this->getLink()) {
-            $temp[] =  '<strong><a href="' . ($link) . '" target="_blank">Просмотреть</a></strong>';
+            $temp[] =  '<a href="' . ($link) . '" target="_blank">Просмотреть</a>';
         }
 
         return '<p>' . implode('<br />' . "\n", $temp) . '</p>' . "\n\n";

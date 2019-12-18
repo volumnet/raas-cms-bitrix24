@@ -430,7 +430,7 @@ class DataGeneratorTest extends PHPUnit_Framework_TestCase
         );
         $result = self::$dg2->getSimilarContactsText($src);
         $this->assertEquals(
-            '<p><strong>НАЙДЕНЫ СОВПАДАЮЩИЕ КОНТАКТЫ:</strong><br />' . "\n" .
+            '<p>НАЙДЕНЫ СОВПАДАЮЩИЕ КОНТАКТЫ:<br />' . "\n" .
             'Телефон +7 999 000-00-00, e-mail test@test.org: <a href="/crm/contact/details/3/" target="_blank">#3</a><br />' . "\n" .
             'Телефон +7 999 000-11-22, e-mail test@test.org: <a href="/crm/contact/details/3/" target="_blank">#3</a>, <a href="/crm/contact/details/4/" target="_blank">#4</a><br />' . "\n" .
             'Телефон +7 999 000-11-22, e-mail test2@test.org: <a href="/crm/contact/details/4/" target="_blank">#4</a><br />' . "\n" .

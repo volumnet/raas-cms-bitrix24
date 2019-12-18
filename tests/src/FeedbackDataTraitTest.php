@@ -121,12 +121,12 @@ class FeedbackDataTraitTest extends PHPUnit_Framework_TestCase
     {
         $result = self::$dg->getSuffixText();
         $this->assertEquals(
-            '<p><strong>Дата отправки:</strong> 09.01.2018 18:07<br />' . "\n" .
-            '<strong>Форма:</strong> Обратная связь 2<br />' . "\n" .
-            '<strong>Страница:</strong> <a href="https://localhost/" target="_blank">Главная</a> / <a href="https://localhost/about/" target="_blank">О компании</a><br />' . "\n" .
-            '<strong>IP-адрес:</strong> 127.0.0.1<br />' . "\n" .
-            '<strong>User-Agent:</strong> Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36<br />' . "\n" .
-            '<strong><a href="https://localhost/admin/?p=cms&sub=feedback&action=view&id=2" target="_blank">Просмотреть</a></strong></p>' . "\n\n",
+            '<p>Дата отправки: 09.01.2018 18:07<br />' . "\n" .
+            'Форма: Обратная связь 2<br />' . "\n" .
+            'Страница: <a href="https://localhost/" target="_blank">Главная</a> / <a href="https://localhost/about/" target="_blank">О компании</a><br />' . "\n" .
+            'IP-адрес: 127.0.0.1<br />' . "\n" .
+            'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36<br />' . "\n" .
+            '<a href="https://localhost/admin/?p=cms&sub=feedback&action=view&id=2" target="_blank">Просмотреть</a></p>' . "\n\n",
             $result
         );
     }
@@ -139,13 +139,13 @@ class FeedbackDataTraitTest extends PHPUnit_Framework_TestCase
     {
 
         $suffixText = '<p>'
-                    . '<strong>Дата отправки:</strong> 09.01.2018 18:07<br />' . "\n"
-                    . '<strong>Форма:</strong> Обратная связь 2<br />' . "\n"
-                    . '<strong>Страница:</strong> <a href="https://localhost/" target="_blank">Главная</a> / <a href="https://localhost/about/" target="_blank">О компании</a><br />' . "\n"
-                    . '<strong>IP-адрес:</strong> 127.0.0.1<br />' . "\n"
-                    . '<strong>User-Agent:</strong> Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36<br />' . "\n"
-                    . '<strong><a href="https://localhost/admin/?p=cms&sub=feedback&action=view&id=2" target="_blank">Просмотреть</a></strong></p>' . "\n\n"
-                    . '<p><strong>НАЙДЕНЫ СОВПАДАЮЩИЕ КОНТАКТЫ:</strong><br />' . "\n"
+                    . 'Дата отправки: 09.01.2018 18:07<br />' . "\n"
+                    . 'Форма: Обратная связь 2<br />' . "\n"
+                    . 'Страница: <a href="https://localhost/" target="_blank">Главная</a> / <a href="https://localhost/about/" target="_blank">О компании</a><br />' . "\n"
+                    . 'IP-адрес: 127.0.0.1<br />' . "\n"
+                    . 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36<br />' . "\n"
+                    . '<a href="https://localhost/admin/?p=cms&sub=feedback&action=view&id=2" target="_blank">Просмотреть</a></p>' . "\n\n"
+                    . '<p>НАЙДЕНЫ СОВПАДАЮЩИЕ КОНТАКТЫ:<br />' . "\n"
                     . 'Телефон +7 999 000-00-00, e-mail test@test.org: <a href="/crm/contact/details/1/" target="_blank">#1</a>, <a href="/crm/contact/details/2/" target="_blank">#2</a>, <a href="/crm/contact/details/3/" target="_blank">#3</a><br />' . "\n"
                     . 'Телефон +7 999 000-00-00, e-mail test2@test.org: <a href="/crm/contact/details/1/" target="_blank">#1</a>, <a href="/crm/contact/details/2/" target="_blank">#2</a>, <a href="/crm/contact/details/3/" target="_blank">#3</a><br />' . "\n"
                     . 'Телефон +7 999 000-11-11, e-mail test@test.org: <a href="/crm/contact/details/1/" target="_blank">#1</a>, <a href="/crm/contact/details/2/" target="_blank">#2</a>, <a href="/crm/contact/details/3/" target="_blank">#3</a><br />' . "\n"
@@ -179,31 +179,31 @@ class FeedbackDataTraitTest extends PHPUnit_Framework_TestCase
         $this->assertNull($result['fields']['WEB']);
 
         $this->assertEquals(
-            '<p><strong>Изображение:</strong> <a href="https://localhost/files/cms/common/arboretum_tree_rings_4.jpg" target="_blank">arboretum_tree_rings_4.jpg</a>, <a href="https://localhost/files/cms/common/brownleaves02899_4.jpg" target="_blank">brownleaves02899_4.jpg</a><br />' . "\n" .
-            '<strong>Согласен(на) на обработку персональных данных:</strong> Да<br />' . "\n" .
-            '<strong>Желаемое время заказа:</strong> 11.01.2018 10:00</p>' . "\n\n" .
+            '<p>Изображение: <a href="https://localhost/files/cms/common/arboretum_tree_rings_4.jpg" target="_blank">arboretum_tree_rings_4.jpg</a>, <a href="https://localhost/files/cms/common/brownleaves02899_4.jpg" target="_blank">brownleaves02899_4.jpg</a><br />' . "\n" .
+            'Согласен(на) на обработку персональных данных: Да<br />' . "\n" .
+            'Желаемое время заказа: 11.01.2018 10:00</p>' . "\n\n" .
             $suffixText,
             $result['fields']['COMMENTS']
         );
 
         $result = self::$dg->getData(true);
         $this->assertEquals(
-            '<p><strong>Фамилия:</strong> Тестовый<br />' . "\n" .
-            '<strong>Имя:</strong> Пользователь<br />' . "\n" .
-            '<strong>Отчество:</strong> 2006<br />' . "\n" .
-            '<strong>Страна:</strong> Россия<br />' . "\n" .
-            '<strong>Индекс:</strong> 123456<br />' . "\n" .
-            '<strong>Область:</strong> Свердловская<br />' . "\n" .
-            '<strong>Дата рождения:</strong> 02.03.1974<br />' . "\n" .
-            '<strong>Компания:</strong> Тестовая компания<br />' . "\n" .
-            '<strong>Должность:</strong> тестировщик<br />' . "\n" .
-            '<strong>E-mail:</strong> <a href="mailto:test@test.org">test@test.org</a>, <a href="mailto:test2@test.org">test2@test.org</a><br />' . "\n" .
-            '<strong>Телефон:</strong> +7 999 000-00-00, +7 999 000-11-11; +7 999 000-22-22<br />' . "\n" .
-            '<strong>Изображение:</strong> <a href="https://localhost/files/cms/common/arboretum_tree_rings_4.jpg" target="_blank">arboretum_tree_rings_4.jpg</a>, <a href="https://localhost/files/cms/common/brownleaves02899_4.jpg" target="_blank">brownleaves02899_4.jpg</a><br />' . "\n" .
-            '<strong>Согласен(на) на обработку персональных данных:</strong> Да<br />' . "\n" .
-            '<strong>Адрес:</strong> Тестовый адрес<br />' . "\n" .
-            '<strong>Город:</strong> Екатеринбург<br />' . "\n" .
-            '<strong>Желаемое время заказа:</strong> 11.01.2018 10:00</p>' . "\n\n" .
+            '<p>Фамилия: Тестовый<br />' . "\n" .
+            'Имя: Пользователь<br />' . "\n" .
+            'Отчество: 2006<br />' . "\n" .
+            'Страна: Россия<br />' . "\n" .
+            'Индекс: 123456<br />' . "\n" .
+            'Область: Свердловская<br />' . "\n" .
+            'Дата рождения: 02.03.1974<br />' . "\n" .
+            'Компания: Тестовая компания<br />' . "\n" .
+            'Должность: тестировщик<br />' . "\n" .
+            'E-mail: <a href="mailto:test@test.org">test@test.org</a>, <a href="mailto:test2@test.org">test2@test.org</a><br />' . "\n" .
+            'Телефон: +7 999 000-00-00, +7 999 000-11-11; +7 999 000-22-22<br />' . "\n" .
+            'Изображение: <a href="https://localhost/files/cms/common/arboretum_tree_rings_4.jpg" target="_blank">arboretum_tree_rings_4.jpg</a>, <a href="https://localhost/files/cms/common/brownleaves02899_4.jpg" target="_blank">brownleaves02899_4.jpg</a><br />' . "\n" .
+            'Согласен(на) на обработку персональных данных: Да<br />' . "\n" .
+            'Адрес: Тестовый адрес<br />' . "\n" .
+            'Город: Екатеринбург<br />' . "\n" .
+            'Желаемое время заказа: 11.01.2018 10:00</p>' . "\n\n" .
             $suffixText,
             $result['fields']['COMMENTS']
         );

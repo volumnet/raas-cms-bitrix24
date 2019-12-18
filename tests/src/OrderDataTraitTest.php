@@ -106,14 +106,14 @@ class OrderDataTraitTest extends PHPUnit_Framework_TestCase
     {
         $result = self::$dg->getSuffixText();
         $this->assertEquals(
-            '<p><strong>Дата отправки:</strong> 09.01.2018 18:08<br />' . "\n" .
-            '<strong>Статус заказа:</strong> Новый<br />' . "\n" .
-            '<strong>Статус оплаты:</strong> Не оплачен<br />' . "\n" .
-            '<strong>Корзина:</strong> Корзина<br />' . "\n" .
-            '<strong>Страница:</strong> <a href="https://localhost/" target="_blank">Главная</a> / <a href="https://localhost/cart/" target="_blank">Корзина</a><br />' . "\n" .
-            '<strong>IP-адрес:</strong> 127.0.0.1<br />' . "\n" .
-            '<strong>User-Agent:</strong> Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36<br />' . "\n" .
-            '<strong><a href="https://localhost/admin/?p=cms&m=shop&sub=&action=view&id=1" target="_blank">Просмотреть</a></strong></p>' . "\n\n",
+            '<p>Дата отправки: 09.01.2018 18:08<br />' . "\n" .
+            'Статус заказа: Новый<br />' . "\n" .
+            'Статус оплаты: Не оплачен<br />' . "\n" .
+            'Корзина: Корзина<br />' . "\n" .
+            'Страница: <a href="https://localhost/" target="_blank">Главная</a> / <a href="https://localhost/cart/" target="_blank">Корзина</a><br />' . "\n" .
+            'IP-адрес: 127.0.0.1<br />' . "\n" .
+            'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36<br />' . "\n" .
+            '<a href="https://localhost/admin/?p=cms&m=shop&sub=&action=view&id=1" target="_blank">Просмотреть</a></p>' . "\n\n",
             $result
         );
     }
@@ -127,23 +127,23 @@ class OrderDataTraitTest extends PHPUnit_Framework_TestCase
         $suffixText = '<p>1 x <a href="https://localhost/catalog/category1/category11/category111/tovar_2/" target="_blank">Товар 2</a><br />' . "\n"
                     . '2 x <a href="https://localhost/catalog/category1/category11/category111/tovar_3/" target="_blank">Товар 3</a><br />' . "\n"
                     . '3 x <a href="https://localhost/catalog/category1/category11/category111/tovar_4/" target="_blank">Товар 4</a></p>' . "\n\n"
-                    . '<p><strong>Дата отправки:</strong> 09.01.2018 18:08<br />' . "\n"
-                    . '<strong>Статус заказа:</strong> Новый<br />' . "\n"
-                    . '<strong>Статус оплаты:</strong> Не оплачен<br />' . "\n"
-                    . '<strong>Корзина:</strong> Корзина<br />' . "\n"
-                    . '<strong>Страница:</strong> <a href="https://localhost/" target="_blank">Главная</a> / <a href="https://localhost/cart/" target="_blank">Корзина</a><br />' . "\n"
-                    . '<strong>IP-адрес:</strong> 127.0.0.1<br />' . "\n"
-                    . '<strong>User-Agent:</strong> Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36<br />' . "\n"
-                    . '<strong><a href="https://localhost/admin/?p=cms&m=shop&sub=&action=view&id=1" target="_blank">Просмотреть</a></strong></p>' . "\n\n"
-                    . '<p><strong>НАЙДЕНЫ СОВПАДАЮЩИЕ КОНТАКТЫ:</strong><br />' . "\n"
+                    . '<p>Дата отправки: 09.01.2018 18:08<br />' . "\n"
+                    . 'Статус заказа: Новый<br />' . "\n"
+                    . 'Статус оплаты: Не оплачен<br />' . "\n"
+                    . 'Корзина: Корзина<br />' . "\n"
+                    . 'Страница: <a href="https://localhost/" target="_blank">Главная</a> / <a href="https://localhost/cart/" target="_blank">Корзина</a><br />' . "\n"
+                    . 'IP-адрес: 127.0.0.1<br />' . "\n"
+                    . 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36<br />' . "\n"
+                    . '<a href="https://localhost/admin/?p=cms&m=shop&sub=&action=view&id=1" target="_blank">Просмотреть</a></p>' . "\n\n"
+                    . '<p>НАЙДЕНЫ СОВПАДАЮЩИЕ КОНТАКТЫ:<br />' . "\n"
                     . 'Телефон +7 999 000-00-00, e-mail test@test.org: <a href="/crm/contact/details/1/" target="_blank">#1</a>, <a href="/crm/contact/details/2/" target="_blank">#2</a>, <a href="/crm/contact/details/3/" target="_blank">#3</a><br />' . "\n"
                     . 'Телефон +7 999 000-00-00: <a href="/crm/contact/details/1/" target="_blank">#1</a>, <a href="/crm/contact/details/2/" target="_blank">#2</a>, <a href="/crm/contact/details/3/" target="_blank">#3</a><br />' . "\n"
                     . 'E-mail test@test.org: <a href="/crm/contact/details/1/" target="_blank">#1</a>, <a href="/crm/contact/details/2/" target="_blank">#2</a>, <a href="/crm/contact/details/3/" target="_blank">#3</a></p>' . "\n\n";
 
         $result = self::$dg->getData(false);
         $this->assertEquals(
-            '<p><strong>Комментарий:</strong> Тестовый комментарий<br />' . "\n" .
-            '<strong>Согласен(на) на обработку персональных данных:</strong> Да</p>' . "\n\n" .
+            '<p>Комментарий: Тестовый комментарий<br />' . "\n" .
+            'Согласен(на) на обработку персональных данных: Да</p>' . "\n\n" .
             $suffixText,
             $result['fields']['COMMENTS']
         );
