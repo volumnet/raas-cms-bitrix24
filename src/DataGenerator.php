@@ -519,6 +519,11 @@ abstract class DataGenerator
                         return (bool)$x ? 'Да' : 'Нет';
                     };
                     break;
+                case 'material':
+                    return function ($x) {
+                        return (string)$x->name;
+                    };
+                    break;
                 default:
                     return array($f, 'doRich');
                     break;
