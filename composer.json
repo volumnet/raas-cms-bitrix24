@@ -2,6 +2,7 @@
     "name": "volumnet/raas-cms-bitrix24",
     "description": "Bitrix24 adapter for RAAS4.CMS",
     "type": "library",
+    "version": "1.2.4",
     "license": "GPL-3.0-or-later",
     "authors": [
         {
@@ -18,7 +19,7 @@
         "volumnet/raas.cms.shop": "^4.2.7"
     },
     "require": {
-        "volumnet/bitrix24": "^1.2.2"
+        "volumnet/bitrix24": "^1.2.4"
     },
     "scripts": {
         "test": [
